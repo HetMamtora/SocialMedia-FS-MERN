@@ -81,9 +81,79 @@ function LogIn(){
 }
 
 const SignUp = () => {
+    useEffect(() => {
+        if(localStorage.getItem("userId")){
+            localStorage.removeItem("userId")
+        }
+    }, [])
     return(
-        <div>
+        <Authenticate />
+    )
+}
 
+function Authenticate(){
+    const [username, setUsername] = useState('');
+    const [lastname, setLastname] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleSignup = async(event) =>{
+        event.preventDefault();
+
+        const formData = {
+            firstName: firstName,
+            lastName: lastname,
+            username: username,
+            password: password
+        };
+
+        console.log('Form Data: ', formData)
+        try{
+            const response = await fetch('http://localhost:8080/api/users/signup',{
+                method: 'POST',
+                headers:{'Content-Type':'application/json'},
+                body: JSON.stringify(formData),
+            });
+
+            if(response.ok){
+                console.log("User Signed Up Successfully");
+            }
+            else{
+                const errorData = await response.json();
+                console.error("Error: ", errorData.error);
+            }
+        }
+        catch(error){
+            console.log('Error: ',error);
+        }
+    };
+    
+    return(
+        <div className='a-right'>
+            <form className='infoForm authForm' onSubmit={handleSignup}>
+                <h3>Sign Up</h3>
+
+                <div>
+                    <input type='text' placeholder='First Name' className='infoInput' name='firstName' value={firstName} onChange={(e) => setFirstName(e.target.value)}/>
+                    <input type='text' placeholder='Last Name' className='infoInput' name='lastName' value={lastname} onChange={(e) => setLastname(e.target.value)}/>
+                </div>
+
+                <div>
+                    <input type='text' placeholder='Username' className='infoInput' name='username' value={username} onChange={(e) => setUsername(e.target.value)}/>
+                </div>
+
+                <div>
+                    <input type='password' placeholder='Password' className='infoInput' name='password' value={password} onChange={(e) => setPassword(e.target.value)}/>
+                    <input type='password' placeholder='Confirm Password' className='infoInput' name='confirmPassword'/>
+                </div>
+
+                <div>
+                    <span style={{fontSize:'12px'}}>
+                        Already Have An Account? <Link to={"/"}>Login</Link>
+                    </span>
+                    <button className='button infoButton'>Sign Up</button>
+                </div>
+            </form>
         </div>
     )
 }
