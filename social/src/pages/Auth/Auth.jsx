@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import "./Auth.css"
-//import Logo from "../../img/logo.png;"
+import Logo from "../../img/logo.png"
 import { Link, useNavigate } from 'react-router-dom'
 
 const Auth = () => {
@@ -67,7 +67,7 @@ function LogIn(){
                     <input type='text' placeholder='Username' className='infoInput' name='username' value={username} onChange={(e) => setUsername(e.target.value)} />
                 </div>
                 <div>
-                    <input type='password' placeholder='Username' className='infoInput' name='password' value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <input type='password' placeholder='Password' className='infoInput' name='password' value={password} onChange={(e) => setPassword(e.target.value)} />
                 </div>
                 <div>
                     <span style={{fontSize:"12px"}}>
