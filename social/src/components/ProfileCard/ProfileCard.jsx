@@ -39,8 +39,28 @@ const ProfileCard = () => {
             </div>
 
             <div className='followStatus'>
-                
+                <div>
+                    <div className='follow'>
+                        <span>{profileData?.followings}</span>
+                        <span className='textbased'>Followings</span>
+                    </div>
+                    <div className='follow'>
+                        <span>{profileData?.followers}</span>
+                        <span>Followers</span>
+                    </div>
+
+                    {ProfilePage && (
+                        <>
+                            <div className='follow'>
+                                <span>{profileData?.posts}</span>
+                                <span>Posts</span>
+                            </div>
+                        </>
+                    )}
+                </div>
             </div>
+
+            {ProfilePage ? "" : <span>My Profile</span>}
         </div>
     )
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-//import ProfileCard from "../ProfileCard.jsx/ProfileCard";
+import ProfileCard from "../ProfileCard/ProfileCard";
 import { UilSetting } from "@iconscout/react-unicons";
 import HomeIcon from "@mui/icons-material/Home";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
