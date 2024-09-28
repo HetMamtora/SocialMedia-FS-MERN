@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-
+import './FollowersCard.css'
 const FollowersCard = () => {
 
     const [users, setUsers] = useState([]);
@@ -18,8 +18,23 @@ const FollowersCard = () => {
 
     const handleFollow = async (followerId) => {
         const formData = {
-            userId: localStorage
+            userId: localStorage.getItem("userId"),
+            followerId: followerId._id
         }
+
+        const response = await fetch('http://localhost:8080/api/profile/follow', {
+            methof: 'POST',
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData),
+        });
+
+        const userData = await response.json()
+        setUnfollow(userData.followersList)
+        localStorage.setItem("followersList", userData.followersList)
+        console.log("Posting... Info Response", userData);
+        
     }
     return (
         <div className='FollowersCard'>
