@@ -47,7 +47,30 @@ const Posts = () => {
     }
 
     return (
-        <div>Posts</div>
+        <div className='Posts'>
+            {posts.length > 0 ? posts.reverse().map((post,id) => {
+                return(
+                    <div className='Post' id={id}>
+                        {post._doc.format === "image" ? <img src={post._doc.format === "image" ? `data:image/jpeg;base64,${post.postBase64}` : `data:video/mp4;base64,${post.postBase64}`} alt="imagePreviewx" /> : <video src={post._doc.format === "image" ? `data:image/jpeg;base64,${post.postBase64}` : `data:video/mp4;base64,${post.postBase64}`} alt="videoplayer" controls style={{ maxWidth: '100%' }} />}
+
+                        <div className='postReact'>
+                            <img src={post._doc.likedUser.includes(localStorage.getItem("userId")) ? Heart : NotLike} alt="" style={{ cursor: "pointer" }} onClick={() => handleLikes(post)} />
+                            <img src={Comment} alt='' style={{cursor:'pointer'}} />
+                            <img src={Share} alt='' style={{cursor:'pointer'}} />
+                        </div>
+
+                        <span style={{color:'var(--gray)', fontSize:'12px'}}>
+                            {post._doc.likes} Likes
+                        </span>
+
+                        <div className='detail'>
+                            <span><b>{post._doc.name}</b></span>
+                            <span> {post._doc.desc === undefined ? post._doc.desc : null}</span>
+                        </div>
+                    </div>
+                )
+            }) : null}
+        </div>
     )
 }
 
