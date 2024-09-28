@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './Posts.css'
-//import { PostsData } from '../../Data/PostsData'
+import { PostsData } from '../../Data/PostsData'
 import Post from '../Post/Post'
 import Comment from '../../img/comment.png'
 import Share from '../../img/share.png'
