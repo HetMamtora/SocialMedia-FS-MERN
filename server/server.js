@@ -8,6 +8,8 @@ const postApi = require("./routes/post");
 const userApi = require("./routes/user");
 const profileApi = require("./routes/profile");
 
+require('dotenv').config();
+
 const app = express();
 const PORT = process.env.PORT || 8080;
 app.use(cors({
