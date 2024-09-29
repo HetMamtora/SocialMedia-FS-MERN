@@ -8,11 +8,11 @@ import {useNavigate} from 'react-router-dom'
 const Home = () => {
 
     const navigate = useNavigate()
-    // useEffect(() => {
-    //     if(!localStorage.getItem('userId')){
-    //         navigate("/")
-    //     }
-    // },[])
+    useEffect(() => {
+        if(!localStorage.getItem('userId')){
+            navigate("/")
+        }
+    }, [])
     
     return (
         <div className='Home'>

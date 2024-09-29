@@ -8,12 +8,12 @@ import { useNavigate } from 'react-router-dom'
 
 const Profile = () => {
 
-    // const navigate = useNavigate()
-    // useEffect(() => {
-    //     if(!localStorage.getItem("userId")){
-    //         navigate("/")
-    //     }
-    // },[])
+    const navigate = useNavigate()
+    useEffect(() => {
+        if(!localStorage.getItem("userId")){
+            navigate("/")
+        }
+    }, [])
 
     return (
         <div className='Profile'>
