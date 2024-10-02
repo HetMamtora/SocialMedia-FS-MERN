@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './FollowersCard.css'
 
 const FollowersCard = () => {
+
     const [users, setUsers] = useState([]);
     const [unfollow, setUnfollow] = useState([])
     const fetchUsers = async () => {
@@ -10,6 +11,7 @@ const FollowersCard = () => {
         console.log("all users", converted)
         setUsers(converted)
     }
+    
     useEffect(() => {
         fetchUsers()
         setUnfollow(localStorage.getItem("followersList"))
